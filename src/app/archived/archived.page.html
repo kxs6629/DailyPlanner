@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text color="primary">Archived To-do Items</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button routerLink="/home">
+    <ion-icon name="list-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content>
+  <ion-item-sliding #slidingItem *ngFor="let archived of archivedItems; let entryIndex = index">
+    <ion-item>
+        <ion-label ion-text color="primary">
+            {{ archived }}
+        </ion-label>
+        <ion-reorder slot="end"></ion-reorder>
+    </ion-item>
+    <ion-item-options side="end">
+        <ion-item-option (click)="restoreEntry(slidingItem, entryIndex)">
+            <ion-icon name="refresh-outline"></ion-icon>
+        </ion-item-option>
+    </ion-item-options>
+
+    <ion-button href="/weather">Weather</ion-button>
+  <ion-button href="/events">Events</ion-button>
+</ion-item-sliding>
+</ion-content>

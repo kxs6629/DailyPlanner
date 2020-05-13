@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title ion-text color="primary">Weather</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-item *ngFor="let data of weatherData">
+  <ion-label ion-text color="primary">
+    {{data}}
+  </ion-label>
+</ion-item>
+
+<ion-button href="/events">Events</ion-button>
+<ion-button href="/home">Agenda</ion-button>
+
+</ion-content>

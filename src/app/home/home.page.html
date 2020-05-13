@@ -1,20 +1,54 @@
-<ion-header [translucent]="true">
+
+
+<ion-header >
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+      <ion-buttons slot="end">
+          <ion-button (click)="toggleReorder();">
+            <ion-label ion-icon color="primary">{{reorderIsDisabled ? 'Edit': 'Done'}}</ion-label>
+          </ion-button>
+          <ion-button (click)="presentAddNewPrompt();">
+              <ion-icon slot="icon-only" name="add" ion-icon color="primary"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-title ion-text color="primary">Agenda</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button routerLink="/archived">
+    <ion-icon name="archive" ></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+
+<ion-content>
+  
+  <ion-list>
+    <ion-reorder-group [disabled]="reorderIsDisabled" (ionItemReorder)="reorderItems($event)">
+        <ion-item-sliding #slidingItem *ngFor="let item of entries; let entryIndex = index">
+            <ion-item>
+                <ion-label ion-text color="primary">
+                    {{ item }}
+                </ion-label>
+                <ion-reorder slot="end"></ion-reorder>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="danger" (click)="archiveEntry(slidingItem, entryIndex)">
+                    <ion-icon name="archive"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+            
+            <ion-item-options side="start">
+              <ion-item-option (click)="editItem(item)">
+                <ion-icon name="pencil-outline"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+
+        </ion-item-sliding>
+    </ion-reorder-group>
+</ion-list>
+
+<ion-button href="/weather">Weather</ion-button>
+<ion-button href="/events">Events</ion-button>
 </ion-content>

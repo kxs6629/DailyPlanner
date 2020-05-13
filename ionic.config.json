@@ -1,5 +1,7 @@
 {
   "name": "DailyPlanner",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
